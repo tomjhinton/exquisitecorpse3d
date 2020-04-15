@@ -1,0 +1,176 @@
+@font-face {
+  font-family: "Passio";
+  src: url("assets/Passio-Graphis.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Art-Dystopia II";
+  src: url("assets/ArtDystopia II.otf") format("opentype");
+}
+
+*{
+  font-weight: bold;
+  font-family: 'Passio',
+
+}
+*:focus {
+    outline: none;
+}
+
+.clip{
+  clip-path: polygon(0 89%, 100% 90%, 100% 100%, 0% 100%);
+}
+
+.blur{
+  filter:  blur(100em)	;
+  margin: 20px solid green;
+}
+
+.first{
+  border-bottom:  1px solid black;
+}
+
+.firstImage{
+  border-bottom:  1px solid black;
+  pointer-events: none;
+}
+
+.second{
+  border-bottom:  1px solid black;
+
+}
+
+.secondImage{
+  border-bottom:  1px solid black;
+  margin-top: 5vh;
+  clip-path: polygon(0 89%, 100% 90%, 100% 100%, 0% 100%);
+  pointer-events: none;
+
+}
+
+.third{
+  border-bottom:  1px solid black;
+
+}
+
+.thirdImage{
+  border-bottom:  1px solid black;
+  margin-top: 5vh;
+  clip-path: polygon(0 90%, 100% 90%, 100% 100%, 0% 100%);
+  pointer-events: none;
+
+}
+
+.side{
+  border-right:  5px solid black;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.brushW{
+  text-align: center;
+  font-size: 2em;
+  cursor: pointer;
+  user-select: none;
+
+}
+
+.circle{
+  text-align: center;
+  font-size: 2em;
+  cursor: pointer;
+  user-select: none;
+
+}
+
+.brushH{
+  text-align: center;
+  font-size: 2em;
+  cursor: pointer;
+  user-select: none;
+
+}
+
+.brushes{
+  padding-top: 5vh;
+}
+
+.side{
+  padding-top: 5vh;
+}
+
+.submit{
+  cursor: pointer;
+  text-decoration: underline;
+  margin-top: 3vw;
+}
+
+.new{
+  cursor: pointer;
+  text-decoration: underline;
+  margin-top: 3vw;
+}
+
+.clear{
+  cursor: pointer;
+  text-decoration: underline;
+  margin-top: 2vw;
+
+}
+
+.fill{
+  cursor: pointer;
+  text-decoration: underline;
+  margin-top: 2vw;
+}
+
+.straight{
+  cursor: pointer;
+  text-decoration: underline;
+  margin-top: 1vw;
+}
+
+
+.brush{
+  border: 1px solid black;
+  margin-left: 30%;
+}
+
+.board{
+  border: 1px solid black;
+  margin: auto;
+  width:640px;
+  margin-top: 5vh;
+}
+
+.explanation{
+  font-size: 3em;
+  margin: auto;
+  padding: 5vw;
+}
+
+.create{
+  margin: auto;
+  border: 4px solid black;
+  width: 14vw;
+  height: 5vw;
+  cursor: pointer;
+  padding-top: 1.5vw;
+  text-align: center;
+
+
+}
+
+.selected{
+  color: rgb(74,246,38);
+}
+
+.title{
+  font-weight: normal;
+ font-family: 'Art-Dystopia II';
+ width: 100%;
+ font-size: 6em;
+ margin-top: 3vh;
+ text-align: center;
+
+}
