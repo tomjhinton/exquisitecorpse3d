@@ -3,6 +3,21 @@ import { Canvas, useFrame } from 'react-three-fiber'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { SwatchesPicker } from 'react-color'
+
+import { useThree } from 'react-three-fiber'
+
+
+
+
+
+
+
+let boxes = [{
+  position: [0,0,0]
+}]
+
+
+
 class Drawing extends React.Component {
 
 
@@ -17,6 +32,8 @@ class Drawing extends React.Component {
       click: false,
       color: 'black',
       brushShape: 'rect',
+      add: false,
+      addShape: 'box',
       brushH: 4,
       brushW: 4,
       circle: 8,
@@ -45,6 +62,8 @@ class Drawing extends React.Component {
     this.toggleStraight = this.toggleStraight.bind(this)
     this.keyUp = this.keyUp.bind(this)
     this.keyDown = this.keyDown.bind(this)
+    this.Box = this.Box.bind(this)
+    this.boxCreate = this.boxCreate.bind(this)
 
 
   }
@@ -59,7 +78,42 @@ class Drawing extends React.Component {
 
       }
 
+  Box(props) {
+    // This reference will give us direct access to the mesh
+    const mesh = useRef()
+    // Set up state for the hovered and active state
+    const [hovered, setHover] = useState(false)
+    const [active, setActive] = useState(false)
 
+    // Rotate mesh every frame, this is outside of React without overhead
+    useFrame(() => {
+      if (hovered && !active) {
+        // mesh.current.rotation.z += 0.01
+        // mesh.current.rotation.x += 0.01
+      }
+      if (hovered && active) {
+        // mesh.current.rotation.y += 0.02
+        // mesh.current.rotation.x += 0.06
+      }
+    })
+
+    return (
+      <mesh
+        {...props}
+        ref={mesh}
+        scale={ [1, 1, 1]}
+        onClick={e => {
+          setActive(!active)
+          console.log(e)
+          e.eventObject.material.color.set( this.state.color)
+        }}
+        onPointerOver={e => setHover(true)}
+        onPointerOut={e => setHover(false)}>
+        <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
+        <meshStandardMaterial attach="material" color={ 'black' } />
+      </mesh>
+    )
+  }
 
 
   componentDidUpdate(prevProps){
@@ -70,7 +124,9 @@ class Drawing extends React.Component {
 
   }
 
-  mouseUp(e){
+  mouseUp({
+
+  }){
 
 
 
@@ -79,7 +135,7 @@ class Drawing extends React.Component {
   mouseDown(e){
 
 
-      }
+  }
 
 
 
@@ -181,12 +237,19 @@ class Drawing extends React.Component {
 
   }
 
+boxCreate(e){
 
+  // boxes.push({
+  //   position: [e.target.client]
+  // })
+
+console.log(e)
+}
 
 
 
   render(){
-
+    console.log(this.state)
 
     return(
 
@@ -196,7 +259,8 @@ class Drawing extends React.Component {
 
           <div className='column is-4 side'>
             <SwatchesPicker onChangeComplete={ this.handleChangeComplete }/>
-            </div>
+
+              <div className='columns is-multiline'>
               <div className='column'>
 
                 <div className='clear'  onClick={this.clear}>
@@ -214,10 +278,24 @@ class Drawing extends React.Component {
             </div>
           </div>
 
+          </div>
 
           <div className='column main'>
             <div className='board'>
-              {this.state.corpse && this.state.corpse.first ==='first' && this.state.corpse.third ==='third' && <Canvas>   </Canvas>}
+              {this.state.corpse && this.state.corpse.first ==='first' && this.state.corpse.third ==='third' &&
+              < div className='first'>
+              <Canvas >
+                <ambientLight />
+                <pointLight position={[10, 10, 10]} />
+                {boxes.map((x,index)=>{
+                  return(
+                    <this.Box key={index+'Box'}  position={x.position} color={this.state.color}/>
+
+                  )
+                })}
+
+              </Canvas>
+            </div>}
 
               {this.state.corpse.first !=='first' && this.state.corpse.third ==='third' && <img src={this.state.corpse.first} className={'firstImage '  +  (this.state.corpse.second!=='second' ? 'blur' : '') +  (this.state.corpse.second==='second' ? 'clip' : '')}/>}
 
@@ -232,6 +310,7 @@ class Drawing extends React.Component {
 
 
           </div>
+        </div>
         </div>
 
 
