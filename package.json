@@ -31,7 +31,7 @@
     "react-three-fiber": "^4.0.28",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
-    "three": "^0.115.0",
+    "three": "^0.137.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.8.2"
